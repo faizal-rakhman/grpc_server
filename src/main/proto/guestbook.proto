@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpcserver";
+option java_outer_classname = "GuestbookService";
+
+package guestbook;
+
+service Guestbook {
+rpc Comment(CommentRequest) returns (CommentResponse) {}
+}
+
+message CommentRequest {
+string name = 1;
+string comment = 2;
+}
+
+message CommentResponse {
+string message = 1;
+}

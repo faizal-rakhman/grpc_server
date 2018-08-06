@@ -6,10 +6,13 @@ import java.util.List;
 
 public class GuestBookRepository extends BaseRepository<GuestBookDBI> {
 
-    public void save(GuestBook guestBook) {
+    public Integer save(String name, String comment) {
         GuestBookDBI dbi = getDBInterface(GuestBookDBI.class);
-        dbi.save(guestBook);
-        dbi.close();
+        try {
+            return dbi.save(name, comment);
+        } finally {
+            dbi.close();
+        }
     }
 
     public List<GuestBook> getAll() {
